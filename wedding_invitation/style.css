@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    background: #fff;
+}
+.background > img {
+    width: 100%;
+}
+.image-button {
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+}
+.image-button img {
+    width: 90%;
+}
