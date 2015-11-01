@@ -26,22 +26,85 @@
         <link href="./style.css" media="all" rel="stylesheet" />
     </head>
 
+    <script>
+        function fadeOut(el){
+            el.style.opacity = 1;
+            (function fade() {
+                if ((el.style.opacity -= .05) < 0) {
+                    el.style.display = "none";
+                } else {
+                    requestAnimationFrame(fade);
+                }
+            })();
+        }
+        function fadeIn(el, display){
+            el.style.opacity = 0;
+            el.style.display = display || "block";
+
+            (function fade() {
+                var val = parseFloat(el.style.opacity);
+                if (!((val += .05) > 1)) {
+                    el.style.opacity = val;
+                    requestAnimationFrame(fade);
+                }
+            })();
+        }
+        function toggleMusic() {
+            var musicControl = document.querySelector("#music-control");
+            var musicElement = document.querySelector("#bg_music");
+            if (musicControl.classList.contains("anim-rotate")) {
+                musicControl.classList.remove("anim-rotate");
+                musicElement.pause();
+            } else {
+                musicControl.classList.add("anim-rotate");
+                musicElement.play();
+            }
+        }
+
+        (function() {
+            setTimeout(function() {
+                var loadingMask = document.querySelector("#loading-mask");
+                var content = document.querySelector("#content");
+                var heart = document.querySelector(".heartbeat")
+                fadeOut(loadingMask);
+                fadeIn(content);
+                heart.classList.add("target-scaleout");
+            }, 1200);
+        })()
+
+    </script>
+
     <body>
-        <div class="background">
-            <img src="images/invitation_bg.png">
+        <div class="music-control anim-rotate" id="music-control" onclick="toggleMusic()">
+            <span class="icon-music"></span>
+        </div>
+        <div style="display:none;">
+          <audio id="bg_music" autoplay="true" controls loop preload="preload" >
+            <source src="./files/I_swear.mp3" type="audio/mpeg" >
+          </audio>
+        </div>
+        <div id="content">
+            <div class="background">
+                <img src="images/invitation_bg.png">
+            </div>
+
+            <div class="buttons-wrapper">
+                <div class="image-button">
+                    <img src="images/time.png" alt="时间">
+                </div>
+                <div class="image-button">
+                    <a href="http://l.map.qq.com/11215432513?m" target="_blank"><img src="images/guanli.png" alt="观礼地点"></a>
+                </div>
+                <div class="image-button">
+                    <a href="http://l.map.qq.com/11215434946?m" target="_blank"><img src="images/yanxi.png" alt="宴席地点"></a>
+                </div>
+            </div>
         </div>
 
-        <div class="buttons-wrapper">
-            <div class="image-button">
-                <img src="images/time.png" alt="时间">
-            </div>
-            <div class="image-button">
-                <img src="images/guanli.png" alt="时间">
-            </div>
-            <div class="image-button">
-                <img src="images/yanxi.png" alt="时间">
-            </div>
+        <div style="position:absolute; z-index: 2; left:0; right: 0; top: 0; bottom:0; background:#fff;" id="loading-mask">
+            <span class="heartbeat" style="margin-top:200px">Loading...</span>
         </div>
+
     </body>
 
 </html>
