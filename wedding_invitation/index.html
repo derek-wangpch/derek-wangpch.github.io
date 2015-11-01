@@ -60,8 +60,7 @@
                 musicElement.play();
             }
         }
-
-        (function() {
+        document.addEventListener("DOMContentLoaded", function(event) {
             setTimeout(function() {
                 var loadingMask = document.querySelector("#loading-mask");
                 var content = document.querySelector("#content");
@@ -70,7 +69,8 @@
                 fadeIn(content);
                 heart.classList.add("target-scaleout");
             }, 1200);
-        })()
+            toggleMusic();
+        });
 
     </script>
 
@@ -93,11 +93,11 @@
             </div>
         </div>
 
-        <div class="music-control anim-rotate" id="music-control" onclick="toggleMusic()">
+        <div class="music-control" id="music-control" onclick="toggleMusic()">
             <span class="icon-music"></span>
         </div>
         <div style="display:none;">
-          <audio id="bg_music" autoplay="true" controls loop preload="preload" >
+          <audio id="bg_music" controls loop preload="preload" >
             <source src="./files/I_swear.mp3" type="audio/mpeg" >
           </audio>
         </div>
