@@ -75,14 +75,6 @@
     </script>
 
     <body>
-        <div class="music-control anim-rotate" id="music-control" onclick="toggleMusic()">
-            <span class="icon-music"></span>
-        </div>
-        <div style="display:none;">
-          <audio id="bg_music" autoplay="true" controls loop preload="preload" >
-            <source src="./files/I_swear.mp3" type="audio/mpeg" >
-          </audio>
-        </div>
         <div id="content">
             <div class="background">
                 <img src="images/invitation_bg.png">
@@ -99,6 +91,15 @@
                     <a href="http://l.map.qq.com/11215434946?m" target="_blank"><img src="images/yanxi.png" alt="宴席地点"></a>
                 </div>
             </div>
+        </div>
+
+        <div class="music-control anim-rotate" id="music-control" onclick="toggleMusic()">
+            <span class="icon-music"></span>
+        </div>
+        <div style="display:none;">
+          <audio id="bg_music" autoplay="true" controls loop preload="preload" >
+            <source src="./files/I_swear.mp3" type="audio/mpeg" >
+          </audio>
         </div>
 
         <div style="position:absolute; z-index: 2; left:0; right: 0; top: 0; bottom:0; background:#fff;" id="loading-mask">
